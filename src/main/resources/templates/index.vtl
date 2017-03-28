@@ -1,0 +1,14 @@
+<!-- index.vtl -->
+<h1 class="jumbotron">Hackfest Northwest</h1>
+<p>Get ready to put your skills to the test at <em>Hackfest Northwest!</em></p>
+<p>This year, like last, we will be building some amazing technology to solve problems. Not only does the winning team receive the <em>Hackfest Northwest</em> trophy (and bragging rights) BUT there is a monetary prize as well!</p>
+<p>This event has been proudly going for 10 years and we grow every year! If you have any coding skills (in any language), design skills, marketing, storytelling, public speaking or the like <em>Hackfest Northwest</em> is for YOU.
+<p>Join a team below or enter your own team to compete!<a href="teams/new"> Register a new Team</a></p>
+<h2>Current Teams:</h2>
+<ul>
+  #foreach ($team in $teams)
+    <li><a href="teams/$team.getId()">$team.getName()</a></li>
+  #end
+</ul>
+
+<!-- index.vtl -->
