@@ -10,5 +10,29 @@
     <li><a href="teams/$team.getId()">$team.getName()</a></li>
   #end
 </ul>
+<h2>New Team:</h2>
 
+<form action="/teams" method="post">
+  <label for="name">Team name</label>
+  <input id="name" name="name" type="text">
+  <button type="submit" class="btn btn-success">Add Team</button>
+</form>
+
+<h2>New Member:</h2>
+
+<form action="/teams/:cityId/members/new" method="post">
+  <label for="teamId">Select a List</label>
+<select id='teamId' name='teamId' type='text'>
+  #foreach($team in $teams)
+    <option value="$team.getId()">$team.getName()</option>
+  #end
+</select>
+
+  <div class="form-group">
+    <label for="memberName">name</label>
+    <input id="memberName" name="memberName" type="text" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-success">Add Member</button>
+</form>
 <!-- index.vtl -->

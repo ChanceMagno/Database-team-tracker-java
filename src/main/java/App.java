@@ -54,7 +54,7 @@ public class App {
 
     post("/teams/:cityId/members/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Team team = Team.find(Integer.parseInt(request.params(":cityId")));
+      Team team = Team.find(Integer.parseInt(request.queryParams("teamId")));
 
       String memberName = request.queryParams("memberName");
 
