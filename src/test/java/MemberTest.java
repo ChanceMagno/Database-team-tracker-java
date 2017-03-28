@@ -94,4 +94,12 @@ public class MemberTest {
     Member savedMember = Member.find(myMember.getId());
     assertEquals(savedMember.getTeamId(), myTeam.getId());
   }
+
+  @Test
+  public void update_updatesMemberName_true() {
+    Member newMember = new Member("Jimmy", 1);
+    newMember.save();
+    newMember.update("Timmy");
+    assertEquals("Timmy", Member.find(newMember.getId()).getName());
+  }
 }

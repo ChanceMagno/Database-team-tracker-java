@@ -1,0 +1,14 @@
+<!--member.vtl-->
+<h1>$member.getName()</h1>
+<h2> Belongs to: $team.getName() list.</h2>
+
+<h2>Edit member:</h2>
+
+<form action="/teams/$team.getTeamId()/members/$member.getId()" method="post">
+  <label for="name">Name</label>
+  <input id="name" name="name" type="text">
+  <button type="submit" class="btn btn-info">Update Member</button>
+</form>
+
+<a href="/teams/$team.getTeamId()">Return to $team.getName()</a>
+<!--member.vtl-->

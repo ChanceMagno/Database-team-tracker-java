@@ -5,7 +5,7 @@
 #if ($team.getMembers())
   <ul>
     #foreach ($member in $team.getMembers())
-      <li>$member.getName()</li>
+      <li><a href="/teams/$team.getId()/members/$member.getId()">$member.getName()</li>
     #end
   </ul>
 #else

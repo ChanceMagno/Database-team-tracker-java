@@ -16,6 +16,8 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/index.vtl");
       model.put("teams", Team.all());
+      // Team team = Team.find(Integer.parseInt(request.queryParams("teamId")));
+      // model.put("team", team);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -52,9 +54,20 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/teams/:cityId/members/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Team team = Team.find(Integer.parseInt(request.params(":cityId")));
+      Member member = Member.find(Integer.parseInt(request.params(":id")));
+      model.put("team", team);
+      model.put("member", member);
+      model.put("template", "templates/member.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     post("/teams/:cityId/members/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Team team = Team.find(Integer.parseInt(request.queryParams("teamId")));
+
 
       String memberName = request.queryParams("memberName");
 
@@ -62,6 +75,17 @@ public class App {
       member.save();
       model.put("team", team);
       model.put("template", "templates/team.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/teams/:cityId/members/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Member member = Member.find(Integer.parseInt(request.params("id")));
+      String name = request.queryParams("name");
+      Team team = Team.find(member.getTeamId());
+      member.update(name);
+      String url = String.format("/teams/%d/members/%d", team.getId(), member.getId());
+      response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
   }
